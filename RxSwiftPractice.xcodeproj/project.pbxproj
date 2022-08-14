@@ -31,6 +31,7 @@
 		6282B28028A693E700EE804E /* Observable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Observable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6282B28128A693F300EE804E /* Subjects.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Subjects.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6282B28228A6940100EE804E /* FilteringOperators.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FilteringOperators.playground; sourceTree = "<group>"; };
+		62ADCCA928A8E00C0039297A /* TimeBasedOperators.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TimeBasedOperators.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62DD8F1328A6952F002E79BE /* CombiningOperators.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CombiningOperators.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -56,6 +57,7 @@
 				6282B27E28A6937A00EE804E /* Traits.playground */,
 				6282B27F28A6938B00EE804E /* TransformingOperators.playground */,
 				62DD8F1328A6952F002E79BE /* CombiningOperators.playground */,
+				62ADCCA928A8E00C0039297A /* TimeBasedOperators.playground */,
 				6282B26228A6927E00EE804E /* RxSwiftPractice */,
 				6282B26128A6927E00EE804E /* Products */,
 			);

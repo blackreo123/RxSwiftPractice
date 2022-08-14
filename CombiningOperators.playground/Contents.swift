@@ -155,3 +155,110 @@ matchResult
 
 // zipの中の一つでも完了したら全体が終了
 
+print("---------- withLatestFrom ----------")
+let trigger = PublishSubject<Void>()
+let bullet = PublishSubject<String>()
+
+trigger
+    .withLatestFrom(bullet)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+bullet.onNext("bullet1")
+bullet.onNext("bullet1, bullet2")
+bullet.onNext("bullet1, bullet2, bullet3")
+
+trigger.onNext(Void())
+trigger.onNext(Void())
+
+print("---------- sample ----------")
+let start = PublishSubject<Void>()
+let F1Player = PublishSubject<String>()
+
+F1Player
+    .sample(start)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+F1Player.onNext("player1")
+F1Player.onNext("player1, player2")
+F1Player.onNext("player1, player2, player3")
+
+start.onNext(Void())
+start.onNext(Void())
+start.onNext(Void())
+
+print("---------- amb ----------")
+let bus1 = PublishSubject<String>()
+let bus2 = PublishSubject<String>()
+
+let station = bus1.amb(bus2)
+
+station
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+bus2.onNext("bus2: person1")
+bus1.onNext("bus1: person2")
+bus1.onNext("bus1: person3")
+bus2.onNext("bus2: person4")
+bus1.onNext("bus1: person5")
+bus2.onNext("bus2: person6")
+
+print("---------- switchLatest ----------")
+let student1 = PublishSubject<String>()
+let student2 = PublishSubject<String>()
+let student3 = PublishSubject<String>()
+
+let handsUp = PublishSubject<Observable<String>>()
+
+let voice = handsUp.switchLatest()
+
+voice
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+handsUp.onNext(student1)
+student1.onNext("student1 :im student1")
+student2.onNext("student2 :me first!")
+
+handsUp.onNext(student2)
+student2.onNext("student2 :im student2!")
+student1.onNext("student1: my turn...")
+
+handsUp.onNext(student3)
+student2.onNext("student2: wait!")
+student1.onNext("student1: no you wait")
+student3.onNext("student3: i think my turn now")
+
+handsUp.onNext(student1)
+student1.onNext("student1: no i win")
+student2.onNext("student2: no way")
+student3.onNext("student3: no way")
+
+print("---------- reduce ----------")
+Observable.from((1...10))
+//    .reduce(0) { summary, newValue in
+//        return summary + newValue
+//    }
+    .reduce(0, accumulator: +)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+print("---------- scan ----------")
+Observable.from((1...10))
+    .scan(0, accumulator: +)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
